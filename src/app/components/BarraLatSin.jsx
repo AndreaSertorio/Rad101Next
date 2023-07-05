@@ -1,4 +1,3 @@
-// BarraLatSin.jsx
 'use client'
 import { useState } from 'react';
 import Sidebar from './Sidebar';
@@ -12,9 +11,11 @@ export default function BarraLatSin({ children }) {
   };
 
   return (
-    <div className="flex">
+    <div className="flex w-full">
       <Sidebar onMenuItemClick={handleMenuItemClick} />
-      <TemplateContainer selectedMenuItem={selectedMenuItem} />
+      <div className="flex-grow">
+        <TemplateContainer selectedMenuItem={selectedMenuItem} />
+      </div>
     </div>
   );
 }
