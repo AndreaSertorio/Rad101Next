@@ -19,16 +19,19 @@ const menuItems = [
     subItems: [],
   },
 ];
-
-function Sidebar() {
+function Sidebar({ onMenuItemClick }) {
   return (
     <div className="sidebar bg-gray-800 text-white border-r border-gray-600 w-64 p-4">
       {menuItems.map((menuItem) => (
         <div key={menuItem.title} className="mb-4">
-          <button className="mb-2">{menuItem.title}</button>
+          <button className="mb-2" onClick={() => onMenuItemClick(menuItem.title.toLowerCase())}>
+            {menuItem.title}
+          </button>
           {menuItem.subItems.map((subItem) => (
             <div key={subItem} className="ml-4">
-              <button>{subItem}</button>
+              <button onClick={() => onMenuItemClick(subItem.toLowerCase().replace(/ /g, '-'))}>
+                {subItem}
+              </button>
             </div>
           ))}
         </div>
