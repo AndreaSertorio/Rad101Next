@@ -22,6 +22,11 @@ export default function BarraLatSin({ children }) {
     }
   };
 
+  const handleSectionDeselection = (section) => {
+  setSelectedSections(selectedSections.filter(s => s.id !== section.id));
+};
+
+
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
   };
@@ -37,7 +42,10 @@ export default function BarraLatSin({ children }) {
           {tab === 'metodiche' ? (
             <Sidebar onMenuItemClick={handleMenuItemClick} />
           ) : (
-            <BarraRicercaIndicazioniCliniche onSectionSelection={handleSectionSelection} />
+              <BarraRicercaIndicazioniCliniche 
+                onSectionSelection={handleSectionSelection}
+                onSectionDeselection={handleSectionDeselection} // Assicurati che questa linea sia presente
+              />
           )}
         </div>
       }

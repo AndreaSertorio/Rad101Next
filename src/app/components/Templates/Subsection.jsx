@@ -1,35 +1,37 @@
-// Subsection.jsx
+//Subsection.jsx
 'use client'
-import React, { useState, useEffect } from 'react';
+
+
+import React, { useState } from 'react';
 import DescriptionRow from './DescriptionRow';
 
-const Subsection = ({ id, title, rows, selectedSections = [] }) => {
-    const [isOpen, setIsOpen] = useState(false);
+const Subsection = ({ id, title, rows, selectedSections = [], isSectionOpen, getSectionColor }) => {
+    const [isOpen, setIsOpen] = useState(false); // Aggiunto questo stato
 
-    useEffect(() => {
-        if (selectedSections.includes(id)) {
-            setIsOpen(true);
-        }
-    }, [selectedSections, id]);
+    const bgColor = selectedSections.some(section => section.id === id) ? 'bg-green-900' : '';
 
-    const toggleSubsection = () => {
+    const toggleOpen = () => {
         setIsOpen(!isOpen);
     };
 
-const bgColor = selectedSections && selectedSections.includes(id) ? 'bg-green-900' : '';
-
     return (
         <div className={`flex flex-col ml-4 ${bgColor}`}>
-            <div className="w-40 h-16 flex rounded-lg border-2 border-white  text-center justify-center items-center" onClick={toggleSubsection}>
+            <div className="w-40 h-16 flex rounded-lg border-2 border-white text-center justify-center items-center" onClick={toggleOpen}>
                 {title}
             </div>
 
-            {isOpen && rows && (
+            {isOpen && rows && (  // qui usiamo isOpen invece di isSectionOpen
                 <div className="ml-4 w-full flex flex-col">
                     {rows.map(row => 
                         row.rows 
-                            ? <Subsection key={row.id} {...row} selectedSections={selectedSections} />
-                            : <DescriptionRow key={row.id} {...row} selectedSections={selectedSections} />
+                            ? <Subsection key={row.id} {...row} selectedSections={selectedSections} isSectionOpen={isSectionOpen} getSectionColor={getSectionColor}/>
+                            :     <DescriptionRow 
+                                        key={row.id} 
+                                        {...row} 
+                                        selectedSections={selectedSections} 
+                                        isSectionOpen={isSectionOpen} 
+                                        getSectionColor={getSectionColor} // Passing down the function
+                                    />
                     )}
                 </div>
             )}

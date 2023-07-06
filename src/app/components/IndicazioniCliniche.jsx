@@ -1,7 +1,7 @@
 // IndicazioniCliniche.jsx
 import React, { useState, useEffect } from 'react';
 
-const IndicazioniCliniche = ({ ricerca = '', onSectionSelection }) => {
+const IndicazioniCliniche = ({ ricerca = '', onSectionSelection, onSectionDeselection }) => {
 const indicazioniIniziali = [
   { id: 1, nome: 'Trauma Cranico', sezioneId: 'Parenchima_Cerebrale', sottosezioneId: 'Volumi_Cerebrali', descrizioneId: 'Volumi_Lobi_Cerebrali' },
   { id: 2, nome: 'Trauma Cranico', sezioneId: 'Parenchima_Cerebrale', sottosezioneId: 'Volumi_Cerebrali', descrizioneId: 'Lobi_Frontali' },
@@ -32,14 +32,13 @@ const indicazioniIniziali = [
     }
   }, [ricerca, indicazioni]);
 
-const handleCheckboxChange = (event, indicazione) => {
-  if (event.target.checked) {
-    onSectionSelection(indicazione); // Se selezionato, aggiungi alla lista
-  } else {
-    // Se deselezionato, rimuovi dalla lista
-    onSectionSelection(selectedSections.filter(section => section.id !== indicazione.id));
+  const handleCheckboxChange = (event, indicazione) => {
+    if (event.target.checked) {
+      onSectionSelection(indicazione);
+    } else {
+      onSectionDeselection(indicazione);
+    }
   }
-}
 
 
   return (

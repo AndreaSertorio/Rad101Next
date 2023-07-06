@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import IndicazioniCliniche from './IndicazioniCliniche';
 
-const BarraRicercaIndicazioniCliniche = ({ onSectionSelection }) => {
+const BarraRicercaIndicazioniCliniche = ({ onSectionSelection, onSectionDeselection }) => {
   const [ricerca, setRicerca] = useState('');
 
   const handleChange = (event) => {
@@ -19,7 +19,11 @@ const BarraRicercaIndicazioniCliniche = ({ onSectionSelection }) => {
         onChange={handleChange}
         className="w-full px-3 py-2 bg-gray-900 text-white rounded-md" 
       />
-      <IndicazioniCliniche ricerca={ricerca} onSectionSelection={onSectionSelection} />
+          <IndicazioniCliniche 
+            ricerca={ricerca} 
+            onSectionSelection={onSectionSelection}
+            onSectionDeselection={onSectionDeselection} // Assicurati che questa linea sia presente
+          />
     </div>
   );
 }
