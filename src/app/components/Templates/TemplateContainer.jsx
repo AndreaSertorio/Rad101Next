@@ -11,9 +11,6 @@ import ctChest from './CTtemplates/ct-chest';
 import ctAbdomen from './CTtemplates/ct-abdomen';
 import ctPankreas from './CTtemplates/ct-pankreas';
 
-
-
-
 const templates = {
     'ct-head': cthead,
     'ct-neck': ctNeck,
@@ -21,12 +18,9 @@ const templates = {
     'ct-chest': ctChest,
     'ct-abdomen': ctAbdomen,
     'ct-pankreas': ctPankreas,
-
-
 };
 
-
-const TemplateContainer = ({ selectedMenuItem }) => {
+const TemplateContainer = ({ selectedMenuItem, selectedSections }) => {
   // Seleziona il template corretto basandosi sull'id passato
   const selectedTemplate = templates[selectedMenuItem];
 
@@ -36,7 +30,7 @@ const TemplateContainer = ({ selectedMenuItem }) => {
   }
 
   // Altrimenti, mostra il template selezionato
-  return <Template template={selectedTemplate} />;
+  return <Template template={selectedTemplate} selectedSections={selectedSections} />;
 };
 
 export default TemplateContainer;

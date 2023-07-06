@@ -1,8 +1,9 @@
-// BarraRicerca.jsx
+// BarraRicercaIndicazioniCliniche.jsx
+
 import React, { useState } from 'react';
 import IndicazioniCliniche from './IndicazioniCliniche';
 
-const BarraRicercaIndicazioniCliniche = () => {
+const BarraRicercaIndicazioniCliniche = ({ onSectionSelection }) => {
   const [ricerca, setRicerca] = useState('');
 
   const handleChange = (event) => {
@@ -18,7 +19,7 @@ const BarraRicercaIndicazioniCliniche = () => {
         onChange={handleChange}
         className="w-full px-3 py-2 bg-gray-900 text-white rounded-md" 
       />
-      <IndicazioniCliniche ricerca={ricerca} />
+      <IndicazioniCliniche ricerca={ricerca} onSectionSelection={onSectionSelection} />
     </div>
   );
 }
