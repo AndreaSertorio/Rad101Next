@@ -1,8 +1,7 @@
 // TemplateContainer.jsx
 'use client'
-import React from 'react';
+import React, { useState } from 'react'; // Import useState
 import Template from './Template';
-
 // importa templates
 import ctNeck from './CTtemplates/ct-neck';
 import ctSinuses from './CTtemplates/ct-sinuses';
@@ -20,9 +19,10 @@ const templates = {
     'ct-pankreas': ctPankreas,
 };
 
-const TemplateContainer = ({ selectedMenuItem, selectedSections }) => {
+const TemplateContainer = ({ selectedMenuItem }) => {
   // Seleziona il template corretto basandosi sull'id passato
   const selectedTemplate = templates[selectedMenuItem];
+    const [selectedSections, setSelectedSections] = useState([]); 
 
   // Se non c'è nessun template selezionato, non mostrare nulla
   if (!selectedTemplate) {
@@ -30,7 +30,11 @@ const TemplateContainer = ({ selectedMenuItem, selectedSections }) => {
   }
 
   // Altrimenti, mostra il template selezionato
-  return <Template template={selectedTemplate} selectedSections={selectedSections} />;
+  return <Template 
+            template={selectedTemplate} 
+            selectedSections={selectedSections}
+            setSelectedSections={setSelectedSections} // Aggiungi questa linea
+          />;
 };
 
 export default TemplateContainer;

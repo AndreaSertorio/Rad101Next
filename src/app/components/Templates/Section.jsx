@@ -6,10 +6,17 @@ import Subsection from './Subsection';
 import DescriptionRow from './DescriptionRow';
 import PropTypes from 'prop-types';
 
-const Section = ({ id, title, description, rows, selectedSections, isSectionOpen, getSectionColor }) => {
+const Section = ({ id, title, description, rows, selectedSections, setSelectedSections, toggleSectionOpen, getSectionColor }) => {
     const [value, setValue] = useState(description || '');
     const [isSelected, setIsSelected] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
+
+        // This useEffect will ensure that the section opens/closes based on the selectedSections
+useEffect(() => {
+    if (selectedSections) {
+        setIsOpen(selectedSections.some(section => section.id === id));
+    }
+}, [selectedSections, id]);
     
     useEffect(() => {
         if (selectedSections && selectedSections.some(section => section.id === id)) {
@@ -24,9 +31,9 @@ const Section = ({ id, title, description, rows, selectedSections, isSectionOpen
     };
 
             // all'interno del componente Section
-        const toggleSection = () => {
-            setIsOpen(!isOpen);
-        };
+    const toggleSection = () => {
+        toggleSectionOpen(id);
+    };
 
 
     // Modifica il colore di sfondo in base allo stato di selezione
@@ -36,7 +43,7 @@ const Section = ({ id, title, description, rows, selectedSections, isSectionOpen
         <div id={id} className={`flex flex-col border-black border-t-2 my-1 rounded-lg shadow-lg ${bgColor}`}>
             <div 
                 className="flex justify-between font-bold cursor-pointer p-2 border-b-2" 
-                onClick={toggleSection}>
+                onClick={() => toggleSectionOpen(id)}>
                 <span className="w-40 p-1 rounded-lg border-2 border-gray-400 items-center">{title}</span>
                 <textarea 
                     className="bg-blue-300 text-black flex-grow ml-8 pl-3 pt-1" 
@@ -54,14 +61,12 @@ const Section = ({ id, title, description, rows, selectedSections, isSectionOpen
                                   key={row.id} 
                                   {...row} 
                                   selectedSections={selectedSections} 
-                                  isSectionOpen={isSectionOpen} 
                                   getSectionColor={getSectionColor} // Passing down the function
                               />
                             : <DescriptionRow 
                                   key={row.id} 
                                   {...row} 
                                   selectedSections={selectedSections} 
-                                  isSectionOpen={isSectionOpen}
                                   getSectionColor={getSectionColor} // Add this line
                               />
                     )}

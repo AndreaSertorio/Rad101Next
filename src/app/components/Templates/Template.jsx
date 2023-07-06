@@ -1,17 +1,29 @@
 //Template.jsx
 
 'use client'
-import React from 'react';
+import React, { useState } from 'react';
 import Section from './Section';
 import PropTypes from 'prop-types';
 
-const Template = ({ template, selectedSections }) => {
+
+const Template = ({ template, selectedSections = [] , setSelectedSections}) => {
+      const [openedSections, setOpenedSections] = useState([]);
+
   // Funzione per controllare se una sezione è aperta
   const isSectionOpen = (sectionId) => {
-    return selectedSections.some(section => section.id === sectionId);
+    return openedSections.includes(sectionId);
   };
     
-    
+      // Funzione per aprire/chiudere una sezione
+  const toggleSectionOpen = (sectionId) => {
+    let newSelectedSections;
+    if (selectedSections.some(section => section.id === sectionId)) {
+      newSelectedSections = selectedSections.filter(section => section.id !== sectionId);
+    } else {
+      newSelectedSections = [...selectedSections, { id: sectionId }];
+    }
+    setSelectedSections(newSelectedSections);
+  };
 
   // Funzione per ottenere il colore di una sezione
   const getSectionColor = (sectionId) => {
@@ -29,12 +41,13 @@ const Template = ({ template, selectedSections }) => {
         <tbody>
           {template.sections.map(section => 
                 <Section 
-                key={section.title} 
-                {...section} 
-                selectedItems={selectedSections || []} 
-                isSectionOpen={isSectionOpen} // Qui è dove dovresti passare la funzione
-                sectionColor={getSectionColor(section.id)}
-                getSectionColor={getSectionColor}
+                    key={section.title} 
+                    {...section} 
+                    selectedSections={selectedSections}
+                    setSelectedSections={setSelectedSections} // Passa questa funzione
+                    toggleSectionOpen={toggleSectionOpen}
+                    sectionColor={getSectionColor(section.id)}
+                    getSectionColor={getSectionColor}
                 />
           )}
         </tbody>
