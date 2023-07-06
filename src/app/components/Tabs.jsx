@@ -18,7 +18,7 @@ const Tabs = () => {
           Metodiche
         </button>
         <button
-          className={`w-1/2 p-3 ${activeTab === 'indicazioni' ? 'text-white' : 'text-gray-500'}`}
+          className={` w-1/2 p-3 ${activeTab === 'indicazioni' ? 'text-white' : 'text-gray-500'}`}
           onClick={() => setActiveTab('indicazioni')}
         >
           Indicazioni Cliniche

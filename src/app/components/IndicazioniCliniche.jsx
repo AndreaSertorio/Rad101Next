@@ -43,4 +43,5 @@ const IndicazioniCliniche = ({ ricerca = '' }) => {
   );
 }
 
+
 export default IndicazioniCliniche;

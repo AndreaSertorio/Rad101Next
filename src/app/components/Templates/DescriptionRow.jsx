@@ -1,47 +1,29 @@
 'use client'
 // DescriptionRow.jsx
-
 import React, { useState } from 'react';
-import Subsection from './Subsection';
 
-const DescriptionRow = ({ id, title, description, rows }) => {
-    const [isOpen, setIsOpen] = useState(false);
+const DescriptionRow = ({ id, title, description }) => {
     const [value, setValue] = useState(description || '');
 
     const handleChange = (event) => {
         setValue(event.target.value);
     };
 
-    const toggleRow = (event) => {
-        event.preventDefault();
-        setIsOpen(!isOpen);
-    };
-
     return (
-        <div className="flex flex-col mt-4 p-2 bg-blue-500 text-white rounded-lg shadow-md">
-            <div className="flex justify-between">
+        <div className="flex flex-col p-2 bg-blue-800 text-white rounded-lg shadow-md mr-12 ml-10">
+            <div className="flex justify-between pl-6">
                 <span 
-                    className="font-bold mr-2 cursor-pointer" 
-                    onClick={toggleRow}>
+                    className="font-bold mr-2 cursor-pointer p-1 rounded-lg text-right  w-28">
                     {title}:
                 </span>
                 <textarea 
-                    className="bg-blue-300 text-black flex-grow" 
+                    className="bg-blue-300 text-black flex-grow pl-3 pt-1  " 
                     value={value} 
                     onChange={handleChange} 
                     rows="auto" 
                     style={{resize: 'none'}}
                 />
             </div>
-            {isOpen && rows && (
-                <div className="ml-4 w-full flex flex-col">
-                    {rows.map(row => 
-                        row.rows 
-                            ? <Subsection key={row.id} {...row} />
-                            : <DescriptionRow key={row.id} {...row} />
-                    )}
-                </div>
-            )}
         </div>
     );
 };

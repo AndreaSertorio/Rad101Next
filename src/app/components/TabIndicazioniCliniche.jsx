@@ -4,7 +4,7 @@ import IndicazioniCliniche from './IndicazioniCliniche';
 
 const TabIndicazioniCliniche = () => {
   return (
-    <div className="p-4 bg-gray-800 text-white">
+    <div className="p-4 bg-gray-800 text-white ">
       <BarraRicercaIndicazioniCliniche />
       {/* <IndicazioniCliniche /> */}
     </div>

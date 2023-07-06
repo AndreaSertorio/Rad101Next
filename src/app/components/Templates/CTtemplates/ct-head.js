@@ -7,6 +7,11 @@ const ctHead = {
             description: 'Descrizione dell\'integrità e simmetria della sostanza grigia corticale.',
             rows: [
                 {
+                    id: 'Corteccia_Cerebrale',
+                    title: 'CORTECCIA CEREBRALE',
+                    description: 'Descrizione dell\'integrità e simmetria della sostanza grigia corticale.'
+                },
+                {
                     id: 'Sostanza_Bianca',
                     title: 'SOSTANZA BIANCA',
                     description: 'Descrizione della sostanza bianca, segni di leucodistrofia o lesioni ipodense.'
@@ -14,11 +19,8 @@ const ctHead = {
                 {
                     id: 'Volumi_Cerebrali',
                     title: 'VOLUMI CEREBRALI',
+                    description: 'Descrizione del volume generale del cervello, eventuali segni di atrofia cerebrale o di un aumento del volume cerebrale.',
                     rows: [
-                        {
-                            id: 'Description',
-                            description: 'Descrizione del volume generale del cervello, eventuali segni di atrofia cerebrale o di un aumento del volume cerebrale.',
-                        },
                         {
                             id: 'Volumi_Lobi_Cerebrali',
                             title: 'LOBI CEREBRALI',
@@ -219,7 +221,8 @@ const ctHead = {
                     description: 'Descrizione delle strutture adiacenti, eventuali segni di compressione o spostamento del ventricolo laterale o del terzo ventricolo.',
                 },
                 {
-                    id:'Fossa Posteriore',
+                    id: 'Fossa Posteriore',
+                    title: 'Fossa Posteriore',
                     description: 'Descrizione della fossa posteriore, eventuali segni di edema cerebellare o di ematoma che potrebbe causare un effetto di massa.',
                 },
                 {

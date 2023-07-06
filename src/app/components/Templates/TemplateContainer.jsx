@@ -7,13 +7,21 @@ import Template from './Template';
 import ctNeck from './CTtemplates/ct-neck';
 import ctSinuses from './CTtemplates/ct-sinuses';
 import cthead from './CTtemplates/ct-head';
+import ctChest from './CTtemplates/ct-chest';
+import ctAbdomen from './CTtemplates/ct-abdomen';
+import ctPankreas from './CTtemplates/ct-pankreas';
+
 
 
 
 const templates = {
-       'ct-head': cthead,
-  'ct-neck': ctNeck,
+    'ct-head': cthead,
+    'ct-neck': ctNeck,
     'ct-sinuses': ctSinuses,
+    'ct-chest': ctChest,
+    'ct-abdomen': ctAbdomen,
+    'ct-pankreas': ctPankreas,
+
 
 };
 
