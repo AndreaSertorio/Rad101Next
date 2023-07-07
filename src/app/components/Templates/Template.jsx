@@ -62,6 +62,8 @@ const Template = ({ template, selectedSections = [], setSelectedSections }) => {
                     {...section} 
                     isOpen={sectionDaAprire.includes(section.id)} // Passa questa prop a Section
                     toggleSectionOpen={toggleSectionOpen} // Passa questa funzione a Section
+                    subsectionDaAprire={subsectionDaAprire} // Aggiungi questa linea
+                    toggleSubSectionOpen={toggleSubSectionOpen} // Aggiungi questa linea
                     sectionColor={getSectionColor(section.id)}
                     getSectionColor={getSectionColor}
                 />

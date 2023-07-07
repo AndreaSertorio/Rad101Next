@@ -6,7 +6,7 @@ import Subsection from './Subsection';
 import DescriptionRow from './DescriptionRow';
 import PropTypes from 'prop-types';
 
-const Section = ({ id, title, description, rows, isSelected, isOpen, toggleSectionOpen, getSectionColor }) => {
+const Section = ({ id, title, description, rows, isSelected, isOpen, toggleSectionOpen, getSectionColor, subsectionDaAprire, toggleSubSectionOpen }) => {
     const [value, setValue] = useState(description || '');
 
         const handleChange = (event) => {
@@ -46,8 +46,10 @@ const Section = ({ id, title, description, rows, isSelected, isOpen, toggleSecti
                         ? <Subsection 
                             key={row.id} 
                             {...row} 
-                            isSelected={isSelected} 
-                            getSectionColor={getSectionColor} // Passing down the function
+                            isOpen={subsectionDaAprire.includes(row.id)} // Modifica questa linea
+                            toggleSubSectionOpen={toggleSubSectionOpen} // Aggiungi questa linea
+                                getSectionColor={getSectionColor}
+                                subsectionDaAprire={subsectionDaAprire}
                             />
                         : <DescriptionRow 
                             key={row.id} 

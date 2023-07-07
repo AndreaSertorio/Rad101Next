@@ -5,13 +5,16 @@
 import React, { useState } from 'react';
 import DescriptionRow from './DescriptionRow';
 
-const Subsection = ({ id, title, rows, selectedSections = [], isSectionOpen, getSectionColor }) => {
-    const [isOpen, setIsOpen] = useState(false); // Aggiunto questo stato
-
-    const bgColor = selectedSections.some(section => section.id === id) ? 'bg-green-900' : '';
+const Subsection = ({ id, title, rows, isOpen, toggleSubSectionOpen, getSectionColor, subsectionDaAprire }) => {
+    
+    const bgColor = getSectionColor(id); // Utilizza getSectionColor per calcolare bgColor
 
     const toggleOpen = () => {
-        setIsOpen(!isOpen);
+        toggleSubSectionOpen(id); // Modifica questa linea
+    };
+
+     const handleChange = (event) => {
+        setValue(event.target.value);
     };
 
     return (
@@ -24,12 +27,18 @@ const Subsection = ({ id, title, rows, selectedSections = [], isSectionOpen, get
                 <div className="ml-4 w-full flex flex-col">
                     {rows.map(row => 
                         row.rows 
-                            ? <Subsection key={row.id} {...row} selectedSections={selectedSections} isSectionOpen={isSectionOpen} getSectionColor={getSectionColor}/>
+                            ? <Subsection key={row.id}
+                                {...row}
+                                    isOpen={subsectionDaAprire.includes(row.id)} // Modifica questa linea
+                                toggleSubSectionOpen={toggleSubSectionOpen} // Aggiungi questa linea
+                                subsectionDaAprire={subsectionDaAprire}
+
+                                getSectionColor={getSectionColor}
+                  
+                            />
                             :     <DescriptionRow 
                                         key={row.id} 
                                         {...row} 
-                                        selectedSections={selectedSections} 
-                                        isSectionOpen={isSectionOpen} 
                                         getSectionColor={getSectionColor} // Passing down the function
                                     />
                     )}
