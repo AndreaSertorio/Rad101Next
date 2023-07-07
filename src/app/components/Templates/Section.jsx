@@ -6,29 +6,15 @@ import Subsection from './Subsection';
 import DescriptionRow from './DescriptionRow';
 import PropTypes from 'prop-types';
 
-const Section = ({ id, title, description, rows, selectedSections, setSelectedSections, toggleSectionOpen, getSectionColor }) => {
+const Section = ({ id, title, description, rows, isSelected, isOpen, toggleSectionOpen, getSectionColor }) => {
     const [value, setValue] = useState(description || '');
-    const [isSelected, setIsSelected] = useState(false);
-    const [isOpen, setIsOpen] = useState(false);
 
-        // This useEffect will ensure that the section opens/closes based on the selectedSections
-useEffect(() => {
-    if (selectedSections) {
-        setIsOpen(selectedSections.some(section => section.id === id));
-    }
-}, [selectedSections, id]);
-    
-    useEffect(() => {
-        if (selectedSections && selectedSections.some(section => section.id === id)) {
-            setIsSelected(true);
-        } else {
-            setIsSelected(false);
-        }
-    }, [selectedSections, id]);
-
-    const handleChange = (event) => {
+        const handleChange = (event) => {
         setValue(event.target.value);
     };
+
+        // This useEffect will ensure that the section opens/closes based on the selectedSections
+
 
             // all'interno del componente Section
     const toggleSection = () => {
@@ -40,10 +26,10 @@ useEffect(() => {
     const bgColor = isSelected ? 'bg-blue-900' : 'bg-indigo-900';
 
     return (
-        <div id={id} className={`flex flex-col border-black border-t-2 my-1 rounded-lg shadow-lg ${bgColor}`}>
-            <div 
+        <tr id={id} className={`flex flex-col border-black border-t-2 my-1 rounded-lg shadow-lg ${bgColor}`}>
+            <td 
                 className="flex justify-between font-bold cursor-pointer p-2 border-b-2" 
-                onClick={() => toggleSectionOpen(id)}>
+                onClick={toggleSection}>
                 <span className="w-40 p-1 rounded-lg border-2 border-gray-400 items-center">{title}</span>
                 <textarea 
                     className="bg-blue-300 text-black flex-grow ml-8 pl-3 pt-1" 
@@ -52,39 +38,39 @@ useEffect(() => {
                     rows="auto" 
                     style={{resize: 'none', minHeight: '1em', maxHeight: '20em'}}
                 />
-            </div>
-                {isOpen && (
-                    <div className="ml-4 w-full flex flex-col">
-                        {rows.map(row => 
-                            row.rows 
-                           ? <Subsection 
-                                  key={row.id} 
-                                  {...row} 
-                                  selectedSections={selectedSections} 
-                                  getSectionColor={getSectionColor} // Passing down the function
-                              />
-                            : <DescriptionRow 
-                                  key={row.id} 
-                                  {...row} 
-                                  selectedSections={selectedSections} 
-                                  getSectionColor={getSectionColor} // Add this line
-                              />
+            </td>
+            {isOpen && (
+                <td className="ml-4 w-full flex flex-col">
+                    {rows.map(row => 
+                        row.rows 
+                        ? <Subsection 
+                            key={row.id} 
+                            {...row} 
+                            isSelected={isSelected} 
+                            getSectionColor={getSectionColor} // Passing down the function
+                            />
+                        : <DescriptionRow 
+                            key={row.id} 
+                            {...row} 
+                            isSelected={isSelected} 
+                            getSectionColor={getSectionColor} // Add this line
+                            />
                     )}
-                    </div>
-                )}
-
-
-        </div>
+                </td>
+            )}
+        </tr>
     );
 };
 
 Section.propTypes = {
-  id: PropTypes.number,
-  title: PropTypes.string,
-  description: PropTypes.string,
-  rows: PropTypes.array,
-  selectedSections: PropTypes.array,
-  isSectionOpen: PropTypes.func,
+    id: PropTypes.oneOfType([    PropTypes.number,    PropTypes.string  ]).isRequired,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    rows: PropTypes.array,
+    isSelected: PropTypes.bool,
+    isOpen: PropTypes.bool,
+    toggleSectionOpen: PropTypes.func,
+    getSectionColor: PropTypes.func,
 };
 
 export default Section;

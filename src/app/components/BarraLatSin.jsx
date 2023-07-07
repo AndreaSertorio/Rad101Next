@@ -53,7 +53,11 @@ export default function BarraLatSin({ children }) {
         {isSidebarOpen ? <FaTimes /> : <FaBars />}
       </button>
       <div className="flex-grow">
-        <TemplateContainer selectedMenuItem={selectedMenuItem} selectedSections={selectedSections} />
+        <TemplateContainer
+          selectedMenuItem={selectedMenuItem}
+          selectedSections={selectedSections}
+          setSelectedSections={setSelectedSections}
+        />
       </div>
     </div>
   );

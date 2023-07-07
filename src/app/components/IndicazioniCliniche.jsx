@@ -4,9 +4,9 @@ import React, { useState, useEffect } from 'react';
 const IndicazioniCliniche = ({ ricerca = '', onSectionSelection, onSectionDeselection }) => {
 const indicazioniIniziali = [
   { id: 1, nome: 'Trauma Cranico', sezioneId: 'Parenchima_Cerebrale', sottosezioneId: 'Volumi_Cerebrali', descrizioneId: 'Volumi_Lobi_Cerebrali' },
-  { id: 2, nome: 'Trauma Cranico', sezioneId: 'Parenchima_Cerebrale', sottosezioneId: 'Volumi_Cerebrali', descrizioneId: 'Lobi_Frontali' },
-  { id: 3, nome: 'Trauma Cranico', sezioneId: 'Parenchima_Cerebrale', sottosezioneId: 'Volumi_Cerebrali', descrizioneId: 'Lobi_Temporali' },
-  { id: 4, nome: 'Trauma Cranico', sezioneId: 'Parenchima_Cerebrale', sottosezioneId: 'Volumi_Cerebrali', descrizioneId: 'Lobi_Parietali' },
+  { id: 2, nome: 'Trauma Cranico', sezioneId: 'Shift_Linea_Mediana', sottosezioneId: 'Volumi_Cerebrali', descrizioneId: 'Lobi_Frontali' },
+  { id: 3, nome: 'Trauma Cranico', sezioneId: 'Tronco_Encefalico', sottosezioneId: 'Volumi_Cerebrali', descrizioneId: 'Lobi_Temporali' },
+  { id: 4, nome: 'Trauma Cranico', sezioneId: 'Cervelletto', sottosezioneId: 'Volumi_Cerebrali', descrizioneId: 'Lobi_Parietali' },
   { id: 5, nome: 'Trauma Cranico', sezioneId: 'Parenchima_Cerebrale', sottosezioneId: 'Volumi_Cerebrali', descrizioneId: 'Lobi_Occipitali' },
   { id: 6, nome: 'Trauma Cranico', sezioneId: 'Parenchima_Cerebrale', sottosezioneId: 'Volumi_Cerebrali', descrizioneId: 'Volumi_Rimanenti_Strutture_Cerebrali' },
   { id: 7, nome: 'Trauma Cranico', sezioneId: 'Parenchima_Cerebrale', sottosezioneId: 'Volumi_Cerebrali', descrizioneId: 'Gangli_della_Base' },
