@@ -23,7 +23,7 @@ const Section = ({ id, title, description, rows, isSelected, isOpen, toggleSecti
 
 
     // Modifica il colore di sfondo in base allo stato di selezione
-    const bgColor = isSelected ? 'bg-blue-900' : 'bg-indigo-900';
+    const bgColor = getSectionColor(id); // Utilizza getSectionColor per calcolare bgColor
 
     return (
         <tr id={id} className={`flex flex-col border-black border-t-2 my-1 rounded-lg shadow-lg ${bgColor}`}>

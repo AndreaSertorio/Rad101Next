@@ -18,9 +18,9 @@ const Template = ({ template, selectedSections = [] }) => {
         setSubSectionDaAprire(selectedSections.map(section => section.sottosezioneId));
         setDescRowDaAprire(selectedSections.map(section => section.descRowId));
     }, [selectedSections]);
-    // console.log(sectionDaAprire.flat());
-    // console.log(subsectionDaAprire.flat());
-    // console.log(descRowDaAprire.flat());
+    console.log(sectionDaAprire.flat());
+    console.log(subsectionDaAprire.flat());
+    console.log(descRowDaAprire.flat());
     
       // Funzione per aprire/chiudere una sezione
     const toggleSectionOpen = (sectionId) => {
@@ -55,15 +55,15 @@ const Template = ({ template, selectedSections = [] }) => {
 
     // Funzione per ottenere il colore di una sezione
     const getSectionColor = (sectionId) => {
-        return sectionDaAprire.flat().includes(sectionId) ? 'bg-blue-900' : 'bg-indigo-900';
+        return sectionDaAprire.flat().includes(sectionId) ? 'bg-blue-900' : 'bg-red-500';
     };
         // Funzione per ottenere il colore di una sottosezione
     const getSubSectionColor = (subsectionId) => {
-        return subsectionDaAprire.flat().includes(subsectionId) ? 'bg-blue-900' : 'bg-indigo-900';
+        return subsectionDaAprire.flat().includes(subsectionId) ? 'bg-blue-900' : 'bg-red-900';
     };
             // Funzione per ottenere il colore di una DescrRow
     const  getDescRowColor = (descRowId) => {
-        return descRowDaAprire.flat().includes(descRowId) ? 'bg-blue-900' : 'bg-indigo-900';
+        return descRowDaAprire.flat().includes(descRowId) ? 'bg-blue-900' : 'bg-red-900';
     };
 
   return (

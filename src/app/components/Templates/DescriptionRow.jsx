@@ -10,7 +10,7 @@ const DescriptionRow = ({ id, title, description, isOpen, toggleDescRowOpen, get
         setValue(event.target.value);
     };
 
-    const bgColor = isOpen ? getDescRowColor(id) : '';
+    const bgColor = getDescRowColor(id); // Utilizza getSectionColor per calcolare bgColor
 
     return (
         <div className={`flex flex-col p-2 text-white rounded-lg shadow-md mr-12 ml-10 ${bgColor}`}>

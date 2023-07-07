@@ -12,13 +12,13 @@ export default function BarraSup() {
             <span className="px-5 py-2 border border-white rounded text-white hover:text-teal-500 hover:bg-white cursor-pointer">Home</span>
           </Link>
           <Link href="/page1">
-            <span className="px-3 py-2 border border-white rounded text-white hover:text-teal-500 hover:bg-teal-800 cursor-pointer">Page 1</span>
+            <span className="px-3 py-2 border border-white rounded text-white hover:text-teal-500 hover:bg-teal-800 cursor-pointer">RadioWiki</span>
           </Link>
           <Link href="/page2">
-            <span className="px-3 py-2 border border-white rounded text-white hover:text-teal-500 hover:bg-teal-800 cursor-pointer">Page 2</span>
+            <span className="px-3 py-2 border border-white rounded text-white hover:text-teal-500 hover:bg-teal-800 cursor-pointer">Fake IMAIOS</span>
           </Link>
           <Link href="/page3">
-            <span className="px-3 py-2 border border-white rounded text-white hover:text-teal-500 hover:bg-teal-800 cursor-pointer">Page 3</span>
+            <span className="px-3 py-2 border border-white rounded text-white hover:text-teal-500 hover:bg-teal-800 cursor-pointer">OpenAI</span>
           </Link>
         </div>
         <div>
