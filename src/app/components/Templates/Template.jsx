@@ -9,13 +9,17 @@ import PropTypes from 'prop-types';
 const Template = ({ template, selectedSections = [] }) => {
     const [sectionDaAprire, setSectionDaAprire] = useState([]);
     const [subsectionDaAprire, setSubSectionDaAprire] = useState([]);
-            const [descRowDaAprire, setDescRowDaAprire] = useState([]);
+    const [descRowDaAprire, setDescRowDaAprire] = useState([]);
+    const [sectionDaEvidenziare, setSectionDaEvidenziare] = useState([]);
+    const [subSectionDaEvidenziare, setsubSectionDaEvidenziare] = useState([]);
 
 
     useEffect(() => {
         // Imposta sectionDaAprire con gli id delle sezioni in selectedSections
         setSectionDaAprire(selectedSections.map(section => section.sezioneId));
+        setSectionDaEvidenziare(selectedSections.map(section => section.sezioneId));
         setSubSectionDaAprire(selectedSections.map(section => section.sottosezioneId));
+        setsubSectionDaEvidenziare(selectedSections.map(section => section.sottosezioneId));
         setDescRowDaAprire(selectedSections.map(section => section.descRowId));
     }, [selectedSections]);
     console.log(sectionDaAprire.flat());
@@ -53,17 +57,33 @@ const Template = ({ template, selectedSections = [] }) => {
         setDescRowDaAprire(newDescRowDaAprire);
     };
 
-    // Funzione per ottenere il colore di una sezione
-    const getSectionColor = (sectionId) => {
-        return sectionDaAprire.flat().includes(sectionId) ? 'bg-blue-900' : 'bg-red-500';
-    };
+        // Funzione per ottenere il colore di una sezione
+        const getSectionColor = (sectionId) => {
+            if (sectionDaAprire.flat().includes(sectionId) && sectionDaEvidenziare.flat().includes(sectionId)) {
+                return 'bg-sky-800';
+            } else if (sectionDaAprire.flat().includes(sectionId)) {
+                return 'bg-sky-950';
+            } else if (sectionDaEvidenziare.flat().includes(sectionId)) {
+                return 'bg-sky-800';
+            } else {
+                return 'bg-sky-950';
+            }
+        };
         // Funzione per ottenere il colore di una sottosezione
-    const getSubSectionColor = (subsectionId) => {
-        return subsectionDaAprire.flat().includes(subsectionId) ? 'bg-blue-900' : 'bg-red-900';
-    };
+        const getSubSectionColor = (subsectionId) => {
+            if (subsectionDaAprire.flat().includes(subsectionId) && subSectionDaEvidenziare.flat().includes(subsectionId)) {
+                return 'bg-sky-800';
+            } else if (subsectionDaAprire.flat().includes(subsectionId)) {
+                return 'bg-sky-950';
+            } else if (subSectionDaEvidenziare.flat().includes(subsectionId)) {
+                return 'bg-sky-800';
+            } else {
+                return 'bg-sky-950';
+            }
+        };
             // Funzione per ottenere il colore di una DescrRow
     const  getDescRowColor = (descRowId) => {
-        return descRowDaAprire.flat().includes(descRowId) ? 'bg-blue-900' : 'bg-red-900';
+        return descRowDaAprire.flat().includes(descRowId) ? 'bg-sky-700' : 'bg-sky-900';
     };
 
   return (

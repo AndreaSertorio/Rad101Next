@@ -1,13 +1,24 @@
 
 // DescriptionRow.jsx
 'use client'
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const DescriptionRow = ({ id, title, description, isOpen, toggleDescRowOpen, getDescRowColor, descRowDaAprire }) => {
     const [value, setValue] = React.useState(description || '');
 
+        useEffect(() => {
+        // Quando il componente viene montato, recupera lo stato dal Local Storage
+        const savedUserInput = localStorage.getItem(id);
+        if (savedUserInput) {
+            setValue(savedUserInput);
+        }
+        }, [id]);
+    
     const handleChange = (event) => {
-        setValue(event.target.value);
+        const newValue = event.target.value;
+        setValue(newValue);
+        // Quando l'input dell'utente cambia, salva nel Local Storage
+        localStorage.setItem(id, newValue);
     };
 
     const bgColor = getDescRowColor(id); // Utilizza getSectionColor per calcolare bgColor
@@ -17,7 +28,7 @@ const DescriptionRow = ({ id, title, description, isOpen, toggleDescRowOpen, get
             <div className="flex justify-between pl-6">
                 <span className="font-bold mr-2 cursor-pointer p-1 rounded-lg text-right w-28">{title}:</span>
                 <textarea 
-                    className="bg-blue-300 text-black flex-grow pl-3 pt-1" 
+                    className="bg-sky-100 text-black flex-grow pl-3 pt-1" 
                     value={value} 
                     onChange={handleChange} 
                     rows="auto" 

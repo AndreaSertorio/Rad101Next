@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 const IndicazioniCliniche = ({ ricerca = '', onSectionSelection, onSectionDeselection }) => {
 const indicazioniIniziali = [
-  { id: 1, nome: 'Trauma Cranico', sezioneId: ['Parenchima_Cerebrale'], sottosezioneId: ['Volumi_Rimanenti_Strutture_Cerebrali', 'Volumi_Cerebrali'], descRowId: ['Corteccia_Cerebrale', 'Sostanza_Bianca', 'Lobi_Frontali', ] },
+  { id: 1, nome: 'Trauma Cranico', sezioneId: ['Parenchima_Cerebrale', 'Massa_Cerebrale', 'Shift_Linea_Mediana', 'Tronco_Encefalico', 'Cervelletto', 'Ventricoli_SpaziSubAracnoidei', 'Strutture_Extracraniche', 'Ossa_Craniche'], sottosezioneId: ['Corteccia_Cerebrale', 'Sostanza_Bianca', 'Volumi_Cerebrali', 'Strutture_Mediane', 'Posizione', 'Dimensioni', 'Prendita_Contrasto', 'Densita_Composizione', 'Identificazione', 'Misurazione', 'Causa', 'Mesencefalo', 'Ponte', 'Bulbo', 'Emisferi_Cerebellari', 'Verme_Cerebellare', 'Fossa_Posteriore', 'IV_Ventricolo', 'Ventricoli_Laterali', 'III_Ventricolo', 'IV_Ventricolo', 'Sistema_Seni_Venosi', 'Pelle_Cuoio_Capelluto', 'Muscoli_Cranici', 'Osso_Frontale', 'Ossa_Parietali', 'Ossa_Temporali', 'Osso_Occipitale'] },
   { id: 2, nome: 'Trauma Cranico', sezioneId: ['Shift_Linea_Mediana'], sottosezioneId: ['Volumi_Cerebrali'], descRowId: ['Lobi_Frontali', 'Corteccia_Cerebrale', 'Sostanza_Bianca'] },
   { id: 3, nome: 'Trauma Cranico', sezioneId: ['Tronco_Encefalico'], sottosezioneId: ['Volumi_Cerebrali'], descRowId: ['Lobi_Temporali'] },
   { id: 4, nome: 'Trauma Cranico', sezioneId: ['Cervelletto'], sottosezioneId: ['Volumi_Cerebrali'], descRowId: ['Lobi_Parietali'] },
