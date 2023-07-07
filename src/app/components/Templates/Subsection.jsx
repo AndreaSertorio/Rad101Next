@@ -5,12 +5,12 @@
 import React, { useState } from 'react';
 import DescriptionRow from './DescriptionRow';
 
-const Subsection = ({ id, title, rows, isOpen, toggleSubSectionOpen, getSectionColor, subsectionDaAprire }) => {
+const Subsection = ({ id, title, rows, isOpen, toggleSubSectionOpen, getSubSectionColor, subsectionDaAprire, toggleDescRowOpen, getDescRowColor, descRowDaAprire }) => {
     
-    const bgColor = getSectionColor(id); // Utilizza getSectionColor per calcolare bgColor
+    const bgColor = getSubSectionColor(id); // Utilizza getSectionColor per calcolare bgColor
 
     const toggleOpen = () => {
-        toggleSubSectionOpen(id); // Modifica questa linea
+        toggleSubSectionOpen(id);
     };
 
      const handleChange = (event) => {
@@ -23,23 +23,27 @@ const Subsection = ({ id, title, rows, isOpen, toggleSubSectionOpen, getSectionC
                 {title}
             </div>
 
-            {isOpen && rows && (  // qui usiamo isOpen invece di isSectionOpen
+            {isOpen && rows && (  
                 <div className="ml-4 w-full flex flex-col">
                     {rows.map(row => 
                         row.rows 
                             ? <Subsection key={row.id}
                                 {...row}
-                                    isOpen={subsectionDaAprire.includes(row.id)} // Modifica questa linea
-                                toggleSubSectionOpen={toggleSubSectionOpen} // Aggiungi questa linea
+                                    isOpen={subsectionDaAprire.flat().includes(row.id)}
+                                toggleSubSectionOpen={toggleSubSectionOpen}
                                 subsectionDaAprire={subsectionDaAprire}
-
-                                getSectionColor={getSectionColor}
-                  
+                                getSubSectionColor={getSubSectionColor}
+                                getDescRowColor={getDescRowColor}
+                                toggleDescRowOpen={toggleDescRowOpen}
+                                descRowDaAprire={descRowDaAprire}                  
                             />
                             :     <DescriptionRow 
                                         key={row.id} 
-                                        {...row} 
-                                        getSectionColor={getSectionColor} // Passing down the function
+                                {...row} 
+                                        isOpen={descRowDaAprire.flat().includes(row.id)}
+                                        getDescRowColor={getDescRowColor}
+                                        toggleDescRowOpen={toggleDescRowOpen}
+                                        descRowDaAprire={descRowDaAprire}
                                     />
                     )}
                 </div>

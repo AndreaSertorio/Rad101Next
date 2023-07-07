@@ -6,7 +6,7 @@ import Subsection from './Subsection';
 import DescriptionRow from './DescriptionRow';
 import PropTypes from 'prop-types';
 
-const Section = ({ id, title, description, rows, isSelected, isOpen, toggleSectionOpen, getSectionColor, subsectionDaAprire, toggleSubSectionOpen }) => {
+const Section = ({ id, title, description, rows, isSelected, isOpen, toggleSectionOpen, getSectionColor, subsectionDaAprire, toggleSubSectionOpen, toggleDescRowOpen, getDescRowColor, descRowDaAprire, getSubSectionColor}) => {
     const [value, setValue] = useState(description || '');
 
         const handleChange = (event) => {
@@ -46,17 +46,22 @@ const Section = ({ id, title, description, rows, isSelected, isOpen, toggleSecti
                         ? <Subsection 
                             key={row.id} 
                             {...row} 
-                            isOpen={subsectionDaAprire.includes(row.id)} // Modifica questa linea
+                            isOpen={subsectionDaAprire.flat().includes(row.id)} // Modifica questa linea
                             toggleSubSectionOpen={toggleSubSectionOpen} // Aggiungi questa linea
-                                getSectionColor={getSectionColor}
                                 subsectionDaAprire={subsectionDaAprire}
+                                getSubSectionColor={getSubSectionColor}
+                                getDescRowColor={getDescRowColor}
+                                toggleDescRowOpen={toggleDescRowOpen}
+                                descRowDaAprire={descRowDaAprire}
                             />
-                        : <DescriptionRow 
-                            key={row.id} 
-                            {...row} 
-                            isSelected={isSelected} 
-                            getSectionColor={getSectionColor} // Add this line
-                            />
+                            :     <DescriptionRow 
+                                        key={row.id} 
+                                {...row} 
+                                        isOpen={descRowDaAprire.flat().includes(row.id)}
+                                        getDescRowColor={getDescRowColor}
+                                        toggleDescRowOpen={toggleDescRowOpen}
+                                        descRowDaAprire={descRowDaAprire}
+                                    />
                     )}
                 </td>
             )}

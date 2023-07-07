@@ -16,12 +16,11 @@ export default function BarraLatSin({ children }) {
     setSelectedMenuItem(menuItem);
   };
 
-  const handleSectionSelection = (section) => {
-    if (!selectedSections.includes(section)) {
+    const handleSectionSelection = (section) => {
+    if (!selectedSections.some(s => s.id === section.id)) {
       setSelectedSections([...selectedSections, section]);
     }
   };
-
   const handleSectionDeselection = (section) => {
   setSelectedSections(selectedSections.filter(s => s.id !== section.id));
 };

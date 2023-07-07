@@ -6,45 +6,64 @@ import Section from './Section';
 import PropTypes from 'prop-types';
 
 
-const Template = ({ template, selectedSections = [], setSelectedSections }) => {
+const Template = ({ template, selectedSections = [] }) => {
     const [sectionDaAprire, setSectionDaAprire] = useState([]);
-        const [subsectionDaAprire, setSubSectionDaAprire] = useState([]);
+    const [subsectionDaAprire, setSubSectionDaAprire] = useState([]);
+            const [descRowDaAprire, setDescRowDaAprire] = useState([]);
 
-      console.log(sectionDaAprire);
+
     useEffect(() => {
         // Imposta sectionDaAprire con gli id delle sezioni in selectedSections
         setSectionDaAprire(selectedSections.map(section => section.sezioneId));
         setSubSectionDaAprire(selectedSections.map(section => section.sottosezioneId));
+        setDescRowDaAprire(selectedSections.map(section => section.descRowId));
     }, [selectedSections]);
-
+    // console.log(sectionDaAprire.flat());
+    // console.log(subsectionDaAprire.flat());
+    // console.log(descRowDaAprire.flat());
+    
       // Funzione per aprire/chiudere una sezione
     const toggleSectionOpen = (sectionId) => {
         let newSectionDaAprire;
-        if (sectionDaAprire.includes(sectionId)) {
-            newSectionDaAprire = sectionDaAprire.filter(id => id !== sectionId);
+        if (sectionDaAprire.flat().includes(sectionId)) {
+            newSectionDaAprire = sectionDaAprire.flat().filter(id => id !== sectionId);
         } else {
-            newSectionDaAprire = [...sectionDaAprire, sectionId];
+            newSectionDaAprire = [...sectionDaAprire.flat(), sectionId];
         }
         setSectionDaAprire(newSectionDaAprire);
     };
           // Funzione per aprire/chiudere una sottosezione
     const toggleSubSectionOpen = (subsectionId) => {
         let newSubSectionDaAprire;
-        if (sectionDaAprire.includes(subsectionId)) {
-            newSubSectionDaAprire = subsectionDaAprire.filter(id => id !== subsectionId);
+        if (subsectionDaAprire.flat().includes(subsectionId)) {
+            newSubSectionDaAprire = subsectionDaAprire.flat().filter(id => id !== subsectionId);
         } else {
-            newSubSectionDaAprire = [...subsectionDaAprire, subsectionId];
+            newSubSectionDaAprire = [...subsectionDaAprire.flat(), subsectionId];
         }
         setSubSectionDaAprire(newSubSectionDaAprire);
+    };
+              // Funzione per visualizzare o meno  una descriptionRow
+    const toggleDescRowOpen = (descRowId) => {
+        let newDescRowDaAprire;
+        if (descRowDaAprire.flat().includes(descRowId)) {
+            newDescRowDaAprire = descRowDaAprire.flat().filter(id => id !== descRowId);
+        } else {
+            newDescRowDaAprire = [...descRowDaAprire.flat(), descRowId];
+        }
+        setDescRowDaAprire(newDescRowDaAprire);
     };
 
     // Funzione per ottenere il colore di una sezione
     const getSectionColor = (sectionId) => {
-        return sectionDaAprire.includes(sectionId) ? 'bg-blue-900' : 'bg-indigo-900';
+        return sectionDaAprire.flat().includes(sectionId) ? 'bg-blue-900' : 'bg-indigo-900';
     };
         // Funzione per ottenere il colore di una sottosezione
-    const getSubSectionColor = (sectionId) => {
-        return subsectionDaAprire.includes(subsectionId) ? 'bg-blue-900' : 'bg-indigo-900';
+    const getSubSectionColor = (subsectionId) => {
+        return subsectionDaAprire.flat().includes(subsectionId) ? 'bg-blue-900' : 'bg-indigo-900';
+    };
+            // Funzione per ottenere il colore di una DescrRow
+    const  getDescRowColor = (descRowId) => {
+        return descRowDaAprire.flat().includes(descRowId) ? 'bg-blue-900' : 'bg-indigo-900';
     };
 
   return (
@@ -60,12 +79,17 @@ const Template = ({ template, selectedSections = [], setSelectedSections }) => {
                 <Section 
                     key={section.title} 
                     {...section} 
-                    isOpen={sectionDaAprire.includes(section.id)} // Passa questa prop a Section
+                    isOpen={sectionDaAprire.flat().includes(section.id)} // Passa questa prop a Section
                     toggleSectionOpen={toggleSectionOpen} // Passa questa funzione a Section
                     subsectionDaAprire={subsectionDaAprire} // Aggiungi questa linea
                     toggleSubSectionOpen={toggleSubSectionOpen} // Aggiungi questa linea
                     sectionColor={getSectionColor(section.id)}
-                    getSectionColor={getSectionColor}
+                  getSectionColor={getSectionColor}
+                  getSubSectionColor={getSubSectionColor}
+                  getDescRowColor={getDescRowColor}
+                  toggleDescRowOpen={toggleDescRowOpen}
+                  descRowDaAprire={descRowDaAprire}
+                
                 />
           )}
         </tbody>
