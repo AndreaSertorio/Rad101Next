@@ -22,9 +22,9 @@ const Template = ({ template, selectedSections = [] }) => {
         setsubSectionDaEvidenziare(selectedSections.map(section => section.sottosezioneId));
         setDescRowDaAprire(selectedSections.map(section => section.descRowId));
     }, [selectedSections]);
-    console.log(sectionDaAprire.flat());
-    console.log(subsectionDaAprire.flat());
-    console.log(descRowDaAprire.flat());
+    // console.log(sectionDaAprire.flat());
+    // console.log(subsectionDaAprire.flat());
+    // console.log(descRowDaAprire.flat());
     
       // Funzione per aprire/chiudere una sezione
     const toggleSectionOpen = (sectionId) => {

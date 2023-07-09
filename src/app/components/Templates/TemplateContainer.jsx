@@ -19,7 +19,7 @@ const templates = {
     'ct-pankreas': ctPankreas,
 };
 
-const TemplateContainer = ({ selectedMenuItem, selectedSections, setSelectedSections }) => {
+const TemplateContainer = ({ selectedMenuItem = null, selectedSections = null, setSelectedSections = null }) => {
   // Seleziona il template corretto basandosi sull'id passato
   const selectedTemplate = templates[selectedMenuItem];
   //scrivi una riga che faccia vedere il debug di selectedSections

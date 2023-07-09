@@ -1,3 +1,5 @@
+// TabIndicazioniCliniche.jsx
+
 import React from 'react';
 import BarraRicercaIndicazioniCliniche from './BarraRicercaIndicazioniCliniche';
 import IndicazioniCliniche from './IndicazioniCliniche';

@@ -2,3 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+.drawer-open .ant-drawer-mask {
+    display: none;
+}
+
+.drawer-open .ant-drawer-content-wrapper {
+    position: fixed;
+}
+
+.main-content {
+    transition: margin-left 0.3s ease;
+}
+
+.main-content.drawer-open {
+    margin-left: -25%;
+}

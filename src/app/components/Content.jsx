@@ -1,3 +1,5 @@
+//Content.jsx
+
 import React from 'react';
 
 function Content({ children }) {
