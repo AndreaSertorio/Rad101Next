@@ -1,28 +1,38 @@
 'use client'
 
 // DrawerDestro.jsx
-import React, { useContext, useState, useEffect } from 'react'; // Import useEffect
-import { Button, Drawer, Card, Col, Row, Image, Checkbox } from 'antd';
+import React, { useContext, useState, useEffect } from 'react';
+import { Button, Drawer, Card, Col, Row, Image, Checkbox, Tabs } from 'antd';
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 import { FocusContext } from './FocusFiles/FocusContext';
+import ChatContainer from './chat/ChatContainer'; 
+import FocusContainer from './FocusFiles/FocusContainer'; 
 
 const { Meta } = Card;
+const { TabPane } = Tabs;
 
 const DrawerDestro = ({ onClose }) => {
     const [open, setopen] = useState(false);
     const { focus, hideDrawer, drawerVisible, closeOnClickOutside, setCloseOnClickOutside } = useContext(FocusContext);
-    const [drawerWidth, setDrawerWidth] = useState(window.innerWidth / 3); // Initialize drawerWidth
+    const [drawerWidth, setDrawerWidth] = useState(300);  // valore iniziale di default
+    const [activeTab, setActiveTab] = useState('1');
 
-    // Update drawerWidth when the window is resized
     useEffect(() => {
-        const handleResize = () => setDrawerWidth(window.innerWidth / 3);
-        window.addEventListener('resize', handleResize);
+        // verifica se l'oggetto window è definito
+        if (typeof window !== "undefined") {
+            setDrawerWidth(window.innerWidth / 3);  // Imposta lo stato qui
+            const handleResize = () => setDrawerWidth(window.innerWidth / 3);
+            window.addEventListener('resize', handleResize);
 
-        return () => window.removeEventListener('resize', handleResize); // Clean up event listener
-    }, []);
+            return () => window.removeEventListener('resize', handleResize);
+        }
+    }, []);  // dipendenza vuota, quindi questo viene eseguito solo al montaggio
 
-        useEffect(() => {
-        // Add the 'drawer-open' class to the body when the drawer is open
+    const handleTabChange = (key) => {
+        setActiveTab(key);
+    };
+
+    useEffect(() => {
         if (drawerVisible && !closeOnClickOutside) {
             document.body.classList.add('drawer-open');
         } else {
@@ -35,8 +45,7 @@ const DrawerDestro = ({ onClose }) => {
             hideDrawer();
         }
     };
-    
-    
+
     return (
         <>
             <Drawer
@@ -45,47 +54,19 @@ const DrawerDestro = ({ onClose }) => {
                 closable={closeOnClickOutside}
                 onClose={handleOnClose}
                 open={drawerVisible}
-                width={drawerWidth} // Use drawerWidth state variable
-        >
-               <Checkbox checked={!closeOnClickOutside} onChange={e => setCloseOnClickOutside(!e.target.checked)}>
-                  Mantieni il drawer aperto quando clicco fuori
+                width={drawerWidth}
+            >
+                <Checkbox checked={!closeOnClickOutside} onChange={e => setCloseOnClickOutside(!e.target.checked)}>
+                    Mantieni il drawer aperto quando clicco fuori
                 </Checkbox>
-                {focus ? (
-                    <div>
-                        <h2>{focus.title}</h2>
-                        <Row gutter={16}>
-                            <Col xs={24} sm={24} md={24} lg={12} xl={12}>
-                                <Card title="Table Description" hoverable>
-                                    <p>{focus.tableDesc}</p>
-                                </Card>
-                            </Col>
-                            <Col xs={24} sm={24} md={24} lg={12} xl={12}>
-                                <Card title="Normal Description" hoverable>
-                                    <p>{focus.normalDesc}</p>
-                                </Card>
-                            </Col>
-                            <Col xs={24} sm={24} md={24} lg={12} xl={12}>
-                                <Card title="Image Description" hoverable>
-                                    <p>{focus.imageDesc}</p>
-                                    <Image src={focus.imagePath} />
-                                </Card>
-                            </Col>
-                            <Col xs={24} sm={24} md={24} lg={12} xl={12}>
-                                <Card title="Pathology List" hoverable>
-                                    {focus.pathologyList.map((pathology, index) => (
-                                        <p key={index}>{pathology}</p>
-                                    ))}
-                                </Card>
-                            </Col>
-                        </Row>
-                    </div>
-                ) : (
-                    <>
-                        <p>Alcuni contenuti...</p>
-                        <p>Alcuni contenuti...</p>
-                        <p>Alcuni contenuti...</p>
-                    </>
-                )}
+                <Tabs activeKey={activeTab} onChange={handleTabChange}>
+                    <TabPane tab="Focus Files" key="1">
+                        <FocusContainer />
+                    </TabPane>
+                    <TabPane tab="Chat" key="2">
+                        <ChatContainer />
+                    </TabPane>
+                </Tabs>
                 <Button type="primary" onClick={handleOnClose}>
                     Chiudi
                 </Button>
@@ -95,4 +76,3 @@ const DrawerDestro = ({ onClose }) => {
 };
 
 export default DrawerDestro;
-
