@@ -35,9 +35,11 @@ const RefertoGpt = () => {
     };
 
     return (
-        <div>
-            <button onClick={handleButtonClick}>Invia a OpenAI</button>
-            {loading ? <Spin tip="Caricamento..." /> : <div>{response}</div>}
+        <div className="shadow-lg p-6 bg-sky-200 rounded-lg text-black">
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleButtonClick}>Invia a OpenAI</button>
+            <div className="mt-4 border-t border-gray-200 pt-4">
+                {loading ? <Spin /> : <div>{response}</div>}
+            </div>
         </div>
     );
 };

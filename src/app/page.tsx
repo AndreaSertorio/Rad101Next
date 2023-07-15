@@ -33,10 +33,11 @@ const MainContent = () => {
         <BarraLatSin>
           <h1 className="px-8 py-2 font-semibold text-xl tracking-tight" >hi</h1>
         </BarraLatSin>
-        <div className="flex-grow" style={{flexGrow: 1}}>
-                  <TemplateContainer />
-                   <RefertoGpt /> 
+        <div className="flex-grow flex flex-col space-y-4" style={{flexGrow: 1}}>
+            <TemplateContainer />
+            <RefertoGpt /> 
         </div>
+
       </div>
           <DrawerWrapper />
          

@@ -24,16 +24,16 @@ const DrawerDestro = ({ onClose }) => {
     const [drawerWidth, setDrawerWidth] = useState(300);  // valore iniziale di default
     const [activeTab, setActiveTab] = useState('1');
 
-    useEffect(() => {
-        // verifica se l'oggetto window è definito
-        if (typeof window !== "undefined") {
-            setDrawerWidth(window.innerWidth / 3);  // Imposta lo stato qui
-            const handleResize = () => setDrawerWidth(window.innerWidth / 3);
-            window.addEventListener('resize', handleResize);
+useEffect(() => {
+    // verifica se l'oggetto window è definito
+    if (typeof window !== "undefined") {
+        setDrawerWidth(window.innerWidth / 3);  // Imposta lo stato qui
+        const handleResize = () => setDrawerWidth(window.innerWidth / 3);
+        window.addEventListener('resize', handleResize);
 
-            return () => window.removeEventListener('resize', handleResize);
-        }
-    }, []);  // dipendenza vuota, quindi questo viene eseguito solo al montaggio
+        return () => window.removeEventListener('resize', handleResize);
+    }
+}, []);
 
     const handleTabChange = (key) => {
         setActiveTab(key);
