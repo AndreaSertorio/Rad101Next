@@ -4,11 +4,14 @@
 import React, { useEffect, useState, useContext } from 'react';
 import focusFiles from '../FocusFiles'; // Importa tutti i file di focus
 import { FocusContext } from '../FocusFiles/FocusContext';
+import EditableFieldsContext from '../../contexts/EditableFieldsContext'; // Importa il nuovo contesto
 
 
 const DescriptionRow = ({ id, title, description, isOpen, toggleDescRowOpen, getDescRowColor, descRowDaAprire }) => {
     const [value, setValue] = React.useState(description || '');
-  const { setFocus, showDrawer } = useContext(FocusContext);
+    const { setFocus, showDrawer } = useContext(FocusContext);
+        const { editableFields, setEditableFields } = useContext(EditableFieldsContext); // Usa il nuovo contesto
+
 
             // Quando il titolo viene cliccato, aggiorna il focus
     const handleClick = () => {
@@ -28,6 +31,9 @@ const DescriptionRow = ({ id, title, description, isOpen, toggleDescRowOpen, get
         setValue(newValue);
         // Quando l'input dell'utente cambia, salva nel Local Storage
         localStorage.setItem(id, newValue);
+                setEditableFields({ ...editableFields, [id]: newValue }); // Aggiorna il contesto
+    console.log(newValue);  // Aggiungi questa riga
+
     };
 
 
