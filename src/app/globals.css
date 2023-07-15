@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+@import '~antd/dist/antd.css';
 .drawer-open .ant-drawer-mask {
     display: none;
 }
