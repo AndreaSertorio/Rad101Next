@@ -2,7 +2,14 @@
 
 // DrawerDestro.jsx
 import React, { useContext, useState, useEffect } from 'react';
-import { Button, Drawer, Card, Col, Row, Image, Checkbox, Tabs } from 'antd';
+import Button from 'antd/lib/button';
+import Drawer from 'antd/lib/drawer';
+import Card from 'antd/lib/card';
+import Col from 'antd/lib/col';
+import Row from 'antd/lib/row';
+import Image from 'antd/lib/image';
+import Checkbox from 'antd/lib/checkbox';
+import Tabs from 'antd/lib/tabs';
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 import { FocusContext } from './FocusFiles/FocusContext';
 import ChatContainer from './chat/ChatContainer'; 
