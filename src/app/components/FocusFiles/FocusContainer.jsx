@@ -23,7 +23,7 @@ const FocusContainer = () => {
                 <Col xs={24} sm={24} md={24} lg={12} xl={12}>
                     <Card title="Image Description" hoverable>
                         <p>{focus.imageDesc}</p>
-                        <Image src={focus.imagePath} />
+                        <Image src={focus.imagePath} alt="descrizione dell'immagine" />
                     </Card>
                 </Col>
                 <Col xs={24} sm={24} md={24} lg={12} xl={12}>

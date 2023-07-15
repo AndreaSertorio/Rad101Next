@@ -8,12 +8,12 @@ import BarraSup from './components/BarraSup';
 import BarraLatSin from './components/BarraLatSin';
 import TemplateContainer from './components/Templates/TemplateContainer';
 import DrawerWrapper from './components/DrawerWrapper';
-import { FocusContext } from './components/FocusFiles/FocusContext'; // Import FocusContext
+import { FocusContext } from './components/FocusFiles/FocusContext';
 
 
 
 export default function Home() {
-    const { drawerVisible } = useContext(FocusContext); // Aggiungi questa riga
+    const { drawerVisible } = useContext(FocusContext); 
 
 
 
@@ -28,7 +28,7 @@ export default function Home() {
           <TemplateContainer />
         </div>
       </div>
-        <DrawerWrapper /> // Inserisci il WrapperDrawer nella tua pagina
+        <DrawerWrapper /> 
 
     </div>
   );

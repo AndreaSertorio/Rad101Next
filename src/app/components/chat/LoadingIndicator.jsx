@@ -1,3 +1,4 @@
+// LoadingIndicator.jsx
 import { Spin } from 'antd';
 
 const LoadingIndicator = () => {
