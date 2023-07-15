@@ -2,7 +2,7 @@
 'use client'
 
 import { useState, useContext } from 'react';
-import { Button } from 'antd';
+import Button from 'antd/lib/button';
 import DrawerDestro from './DrawerDestro';
 import { FocusContext } from './FocusFiles/FocusContext';
 

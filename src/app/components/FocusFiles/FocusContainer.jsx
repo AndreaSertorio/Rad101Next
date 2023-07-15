@@ -1,6 +1,9 @@
 // FocusContainer.jsx
 import React, { useContext } from 'react';
-import { Card, Col, Row, Image } from 'antd';
+import Card from 'antd/lib/card';
+import Col from 'antd/lib/col';
+import Row from 'antd/lib/row';
+import Image from 'antd/lib/image';
 import { FocusContext } from './FocusContext';
 
 const FocusContainer = () => {
