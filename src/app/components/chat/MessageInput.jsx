@@ -1,5 +1,6 @@
 // components/MessageInput.jsx
-import { Input } from 'antd';
+import Input from 'antd/lib/input';
+
 import { useState } from 'react';
 
 const { Search } = Input;

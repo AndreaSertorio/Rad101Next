@@ -1,5 +1,5 @@
 // LoadingIndicator.jsx
-import { Spin } from 'antd';
+import Spin from 'antd/lib/spin';
 
 const LoadingIndicator = () => {
   return (

@@ -1,5 +1,5 @@
 // components/Message.jsx
-import { Card } from 'antd';
+import Card from 'antd/lib/card';
 
 const Message = ({ role, content }) => {
   return (
