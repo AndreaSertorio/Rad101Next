@@ -9,6 +9,7 @@ import TemplateContainer from './components/Templates/TemplateContainer';
 import DrawerWrapper from './components/DrawerWrapper';
 import { FocusContext, FocusProvider } from './components/FocusFiles/FocusContext';
 import EditableFieldsContext from './contexts/EditableFieldsContext'; // Importa il nuovo contesto
+import RefertoGpt from './components/chat/refertogpt';
 
 const MainContent = () => {
     const { drawerVisible } = useContext(FocusContext);
@@ -33,11 +34,13 @@ const MainContent = () => {
           <h1 className="px-8 py-2 font-semibold text-xl tracking-tight" >hi</h1>
         </BarraLatSin>
         <div className="flex-grow" style={{flexGrow: 1}}>
-          <TemplateContainer />
+                  <TemplateContainer />
+                   <RefertoGpt /> 
         </div>
       </div>
-      <DrawerWrapper />
-      <button onClick={handleButtonClick}>Stampa campi modificabili</button> {/* Il nuovo pulsante */}
+          <DrawerWrapper />
+         
+      {/* <button onClick={handleButtonClick}>Stampa campi modificabili</button> Il nuovo pulsante */}
     </div>
   );
 };
