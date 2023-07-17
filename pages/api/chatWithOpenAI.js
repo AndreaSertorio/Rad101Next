@@ -24,6 +24,8 @@ export default async function handler(req, res) {
     res.status(200).json(result.data);
   } catch (error) {
     console.error('Error:', error.response?.data || error.message);
+    console.error('Full error:', error);
     res.status(error.response?.status || 500).json({ error: error.toString() });
   }
+
 }
