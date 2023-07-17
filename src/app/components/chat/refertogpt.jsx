@@ -37,7 +37,8 @@ const RefertoGpt = () => {
 
   const handleButtonClick = () => {
       const dataString = JSON.stringify(editableFields, null, 2);
-      console.log(dataString,additionalText);
+    console.log(dataString, additionalText);
+    console.log(model,temperature);
     sendToOpenAI(dataString);
   };
 
@@ -46,11 +47,15 @@ const RefertoGpt = () => {
       <div style={{ display: 'flex', flexDirection: 'column', marginRight: '20px' }}>
         <div>
           <p>Scegli il modello:</p>
-          <Select defaultValue={model} style={{ width: 200 }} onChange={setModel}>
-            <Option value="gpt-3.5-turbo">gpt-3.5-turbo (4k tokens)</Option>
-            <Option value="gpt-3.5-turbo-16k">gpt-3.5-turbo-16k (16k tokens)</Option>
-            <Option value="gpt-4">gpt-4 (8k tokens)</Option>
-            <Option value="gpt-4-32k">gpt-4-32k (32k tokens)</Option>
+          <Select defaultValue={model} style={{ width: 180 }} onChange={setModel}>
+            <Option value="gpt-4">gpt-4</Option>
+            <Option value="gpt-4-0613">gpt-4-0613</Option>
+            <Option value="gpt-4-32k">gpt-4-32k</Option>
+            <Option value="gpt-4-32k-0613">gpt-4-32k-0613</Option>
+            <Option value="gpt-3.5-turbo">gpt-3.5-turbo</Option>
+            <Option value="gpt-3.5-turbo-0613">gpt-3.5-turbo-0613</Option>
+            <Option value="gpt-3.5-turbo-16k">gpt-3.5-turbo-16k</Option>
+            <Option value="gpt-3.5-turbo-16k-0613">gpt-3.5-turbo-16k-0613</Option>
           </Select>
         </div>
         <div style={{ margin: '20px 0' }}>
@@ -64,6 +69,7 @@ const RefertoGpt = () => {
       </div>
     </div>
   );
+
 
 
 
