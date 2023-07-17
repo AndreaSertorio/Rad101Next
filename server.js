@@ -1,15 +1,14 @@
 const express = require('express');
 const axios = require('axios');
-const cors = require('cors');  // Aggiungi questa linea
+const cors = require('cors');  
 const app = express();
 
-app.options('*', cors());  // enable pre-flight
+app.options('*', cors());  
 app.use(cors({
   origin: ['https://radiology101.it', 'https://www.radiology101.it', 'http://localhost:3001'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
-
 
 app.use(express.json());
 
@@ -40,6 +39,10 @@ app.get('/test', (req, res) => {
   res.send('Hello, world!');
 });
 
+// Aggiungi questa rotta per "/"
+app.get('/', (req, res) => {
+  res.send('Server is up and running!');
+});
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
