@@ -21,7 +21,7 @@ const RefertoGptNetfily = () => {
 
       // Define the API URL based on the environment
   const apiURL = process.env.NODE_ENV === 'production' 
-    ? '/.netlify/functions/chatWithOpenAI' 
+    ? '/netlify/functions/chatWithOpenAI' 
     : '/api/chatWithOpenAI';
 console.log("Current API URL: ", apiURL);
 
