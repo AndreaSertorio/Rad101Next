@@ -1,10 +1,12 @@
 // RefertoGpt.jsx
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
-import Spin from 'antd/lib/spin';
 import EditableFieldsContext from '../../contexts/EditableFieldsContext';
 import additionalText from './Referti/tcEncefalo';
-import { Select, Slider, Checkbox } from 'antd';
+import Select from 'antd/lib/select';
+import Slider from 'antd/lib/slider';
+import Checkbox from 'antd/lib/checkbox';
+import Spin from 'antd/lib/spin';
 
 const { Option } = Select;
 
