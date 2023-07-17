@@ -9,8 +9,6 @@ import TemplateContainer from './components/Templates/TemplateContainer';
 import DrawerWrapper from './components/DrawerWrapper';
 import { FocusContext, FocusProvider } from './components/FocusFiles/FocusContext';
 import EditableFieldsContext from './contexts/EditableFieldsContext'; // Importa il nuovo contesto
-import RefertoGpt from './components/chat/refertogpt';
-import RefertoGptNetfily from './components/chat/RefertoGptNetlify';
 import RefertoGptHeroku from './components/chat/refertoGptHeroku';
 
 const MainContent = () => {
@@ -37,8 +35,7 @@ const MainContent = () => {
         </BarraLatSin>
         <div className="flex-grow flex flex-col space-y-4" style={{flexGrow: 1}}>
             <TemplateContainer />
-          <RefertoGpt /> 
-           <RefertoGptNetfily /> 
+
            <RefertoGptHeroku /> 
 
         </div>
