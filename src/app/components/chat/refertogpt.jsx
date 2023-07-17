@@ -4,7 +4,7 @@ import axios from 'axios';
 import Spin from 'antd/lib/spin';
 import EditableFieldsContext from '../../contexts/EditableFieldsContext';
 import additionalText from './Referti/tcEncefalo';
-import { Select, Slider } from 'antd';
+import { Select, Slider, Checkbox } from 'antd';
 
 const { Option } = Select;
 
@@ -14,6 +14,7 @@ const RefertoGpt = () => {
   const [loading, setLoading] = useState(false);
   const [model, setModel] = useState('gpt-3.5-turbo');
   const [temperature, setTemperature] = useState(0);
+  const [includeAdditionalText, setIncludeAdditionalText] = useState(false);
 
   const sendToOpenAI = async (message) => {
     setLoading(true);
@@ -34,41 +35,46 @@ const RefertoGpt = () => {
     }
     setLoading(false);
   };
-
-  const handleButtonClick = () => {
+ const handleButtonClick = () => {
       const dataString = JSON.stringify(editableFields, null, 2);
-    console.log(dataString, additionalText);
+      const finalMessage = includeAdditionalText ? `${dataString}\n\n${additionalText}` : dataString;
+   console.log(finalMessage);
     console.log(model,temperature);
-    sendToOpenAI(dataString);
+    sendToOpenAI(finalMessage);
   };
 
-  return (
-    <div className="shadow-lg p-6 bg-sky-200 rounded-lg text-black" style={{ display: 'flex', flexDirection: 'row' }}>
-      <div style={{ display: 'flex', flexDirection: 'column', marginRight: '20px' }}>
-        <div>
-          <p>Scegli il modello:</p>
-          <Select defaultValue={model} style={{ width: 180 }} onChange={setModel}>
-            <Option value="gpt-4">gpt-4</Option>
-            <Option value="gpt-4-0613">gpt-4-0613</Option>
-            <Option value="gpt-4-32k">gpt-4-32k</Option>
-            <Option value="gpt-4-32k-0613">gpt-4-32k-0613</Option>
-            <Option value="gpt-3.5-turbo">gpt-3.5-turbo</Option>
-            <Option value="gpt-3.5-turbo-0613">gpt-3.5-turbo-0613</Option>
-            <Option value="gpt-3.5-turbo-16k">gpt-3.5-turbo-16k</Option>
-            <Option value="gpt-3.5-turbo-16k-0613">gpt-3.5-turbo-16k-0613</Option>
-          </Select>
+
+    return (
+      <div className="shadow-lg p-6 bg-sky-200 rounded-lg text-black" style={{ display: 'flex', flexDirection: 'row' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', marginRight: '20px' }}>
+          <div>
+            <p>Scegli il modello:</p>
+            <Select defaultValue={model} style={{ width: 180 }} onChange={setModel}>
+              <Option value="gpt-4">gpt-4</Option>
+              <Option value="gpt-4-0613">gpt-4-0613</Option>
+              <Option value="gpt-4-32k">gpt-4-32k</Option>
+              <Option value="gpt-4-32k-0613">gpt-4-32k-0613</Option>
+              <Option value="gpt-3.5-turbo">gpt-3.5-turbo</Option>
+              <Option value="gpt-3.5-turbo-0613">gpt-3.5-turbo-0613</Option>
+              <Option value="gpt-3.5-turbo-16k">gpt-3.5-turbo-16k</Option>
+              <Option value="gpt-3.5-turbo-16k-0613">gpt-3.5-turbo-16k-0613</Option>
+            </Select>
+          </div>
+          <div style={{ margin: '20px 0' }}>
+            <p>Imposta la temperatura:</p>
+            <Slider min={0} max={1} step={0.1} defaultValue={temperature} onChange={setTemperature} style={{ maxWidth: '200px' }} />
+          </div>
+          <div style={{ margin: '20px 0' }}>
+            <Checkbox checked={includeAdditionalText} onChange={e => setIncludeAdditionalText(e.target.checked)}>Includi esempi</Checkbox>
+          </div>
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleButtonClick}>Invia a OpenAI</button>
         </div>
-        <div style={{ margin: '20px 0' }}>
-          <p>Imposta la temperatura:</p>
-          <Slider min={0} max={1} step={0.1} defaultValue={temperature} onChange={setTemperature} style={{ maxWidth: '200px' }} />
+        <div className="mt-4 border-t border-gray-200 pt-4" style={{ flex: 1 }}>
+          {loading ? <Spin /> : <div>{response}</div>}
         </div>
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleButtonClick}>Invia a OpenAI</button>
       </div>
-      <div className="mt-4 border-t border-gray-200 pt-4" style={{ flex: 1 }}>
-        {loading ? <Spin /> : <div>{response}</div>}
-      </div>
-    </div>
-  );
+    );
+
 
 
 
