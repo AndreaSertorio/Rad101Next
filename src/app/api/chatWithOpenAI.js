@@ -9,6 +9,7 @@ export default async function handler(req, res) {
   const { model, temperature, messages: chatMessages } = req.body;
 
   try {
+    console.log('Request to OpenAI:', { model, temperature, messages: chatMessages });
     const result = await axios.post('https://api.openai.com/v1/chat/completions', {
       model: model,
       temperature: temperature,
@@ -17,15 +18,15 @@ export default async function handler(req, res) {
       headers: {
         'Authorization': `Bearer ${process.env.OPENAI_KEY}`,
         'Content-Type': 'application/json'
-      }
+      },
+      timeout: 120000
     });
 
-    console.log(result.data);
+    console.log('Response from OpenAI:', result);
     res.status(200).json(result.data);
   } catch (error) {
-    console.error('Error:', error.response?.data || error.message);
+    console.error('Error:', error);
     console.error('Full error:', error);
     res.status(error.response?.status || 500).json({ error: error.toString() });
   }
-
 }
