@@ -3,7 +3,9 @@ const axios = require('axios');
 const cors = require('cors');  // Aggiungi questa linea
 const app = express();
 
-app.use(cors());  // E questa linea
+app.use(cors({
+  origin: ['https://radiology101.it', 'https://www.radiology101.it', 'http://localhost:3000']
+}));
 app.use(express.json());
 
 app.post('/chatWithOpenAI', async (req, res) => {
