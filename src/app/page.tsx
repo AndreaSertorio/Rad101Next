@@ -11,6 +11,7 @@ import { FocusContext, FocusProvider } from './components/FocusFiles/FocusContex
 import EditableFieldsContext from './contexts/EditableFieldsContext'; // Importa il nuovo contesto
 import RefertoGpt from './components/chat/refertogpt';
 import RefertoGptNetfily from './components/chat/RefertoGptNetlify';
+import RefertoGptHeroku from './components/chat/refertoGptHeroku';
 
 const MainContent = () => {
     const { drawerVisible } = useContext(FocusContext);
@@ -28,7 +29,7 @@ const MainContent = () => {
     
     
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <BarraSup />
       <div className={`main-content ${drawerVisible ? 'drawer-open' : ''}`}>
         <BarraLatSin>
@@ -38,6 +39,7 @@ const MainContent = () => {
             <TemplateContainer />
           <RefertoGpt /> 
            <RefertoGptNetfily /> 
+           <RefertoGptHeroku /> 
 
         </div>
 

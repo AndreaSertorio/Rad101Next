@@ -1,4 +1,4 @@
-// RefertoGptNetfily.jsx
+// RefertoGptHeroku.jsx
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import EditableFieldsContext from '../../contexts/EditableFieldsContext';
@@ -10,37 +10,34 @@ import Spin from 'antd/lib/spin';
 
 const { Option } = Select;
 
-const RefertoGptNetfily = () => {
+const RefertoGptHeroku = () => {
   const { editableFields } = useContext(EditableFieldsContext);
   const [response, setResponse] = useState('');
   const [loading, setLoading] = useState(false);
   const [model, setModel] = useState('gpt-3.5-turbo');
   const [temperature, setTemperature] = useState(0);
   const [includeAdditionalText, setIncludeAdditionalText] = useState(false);
-    const [usage, setUsage] = useState({}); // Initialize usage as null
+  const [usage, setUsage] = useState({}); // Initialize usage as null
 
-      // Define the API URL based on the environment
-  const apiURL = process.env.NODE_ENV === 'production' 
-    ? '/.netlify/functions/chatWithOpenAI' 
-    //   : '/api/chatWithOpenAI';
-        : '/.netlify/functions/chatWithOpenAI';
+  // Define the API URL as the Heroku app URL
+  const apiURL = 'https://rad101next.herokuapp.com/chatWithOpenAI';
 
 
   const sendToOpenAI = async (message) => {
     setLoading(true);
-  try {
-    const payload = {
-      model,
-      temperature,
-      messages: [
-        { role: 'system', content: "sei l'assistente di un radiologo esperto e devi aiutarlo a stilare il referto di un esame radiologico di una TC encefalo, di seguito ti fornirò cio che il radiologo ha trovato di alterato nell'esame odierno, saranno tra parentesi {}, se non c'è niente, l'esame è da considerarsi negativo; troverai di seguito una serie di esempi di referti di tc encefalo da cui prendere spunto, non devono essere identici, prendi spunto per la terminologia e la formattazione del testo e l'impostazione delle frasi, per scrivere al meglio i reperti che il radiologo ha trovato nell'esame odierno, ecco i reperti e poi gli esempi:" },
-        { role: 'user', content: message }
-      ]
-    };
-    console.log('Sending the following payload to OpenAI:', payload);  // Log the payload
-    const response = await axios.post(apiURL, payload, { timeout: 120000 });
-        setResponse(response.data['choices'][0]['message']['content']);
-              setUsage(response.data.usage); // Save usage data
+    try {
+      const payload = {
+        model,
+        temperature,
+        messages: [
+          { role: 'system', content: "sei l'assistente di un radiologo esperto e devi aiutarlo a stilare il referto di un esame radiologico di una TC encefalo, di seguito ti fornirò cio che il radiologo ha trovato di alterato nell'esame odierno, saranno tra parentesi {}, se non c'è niente, l'esame è da considerarsi negativo; troverai di seguito una serie di esempi di referti di tc encefalo da cui prendere spunto, non devono essere identici, prendi spunto per la terminologia e la formattazione del testo e l'impostazione delle frasi, per scrivere al meglio i reperti che il radiologo ha trovato nell'esame odierno, ecco i reperti e poi gli esempi:" },
+          { role: 'user', content: message }
+        ]
+      };
+      console.log('Sending the following payload to OpenAI:', payload);  // Log the payload
+      const response = await axios.post(apiURL, payload, { timeout: 120000 });
+      setResponse(response.data['choices'][0]['message']['content']);
+      setUsage(response.data.usage); // Save usage data
 
     } catch (error) {
       console.error('Error:', error);
@@ -96,4 +93,4 @@ const RefertoGptNetfily = () => {
   );
 };
 
-export default RefertoGptNetfily;
+export default RefertoGptHeroku;

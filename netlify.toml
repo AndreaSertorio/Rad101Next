@@ -5,3 +5,8 @@
   
 [[plugins]]
 package = "@netlify/plugin-functions-install-core"
+[[headers]]
+  # Define which paths this specific [[headers]] block will cover.
+  for = "/favicon.ico"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
