@@ -18,7 +18,9 @@ const RefertoGpt = () => {
         temperature: 0,
         messages: [
           { role: 'system', content: "sei l'assistente di un radiologo esperto e devi aiutarlo a stilare il referto di un esame radiologico di una TC encefalo, di seguito ti fornirò cio che il radiologo ha trovato di alterato nell'esame odierno, saranno tra parentesi {}, se non c'è niente, l'esame è da considerarsi negativo; troverai di seguito una serie di esempi di referti di tc encefalo da cui prendere spunto, non devono essere identici, prendi spunto per la terminologia e la formattazione del testo e l'impostazione delle frasi, per scrivere al meglio i reperti che il radiologo ha trovato nell'esame odierno, ecco i reperti e poi gli esempi:" },
-          { role: 'user', content: `${message}\n\n${additionalText}` }
+          // { role: 'user', content: `${message}\n\n${additionalText}` }
+                    { role: 'user', content: message }
+
         ]
       });
       
