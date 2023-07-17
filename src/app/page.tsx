@@ -10,6 +10,7 @@ import DrawerWrapper from './components/DrawerWrapper';
 import { FocusContext, FocusProvider } from './components/FocusFiles/FocusContext';
 import EditableFieldsContext from './contexts/EditableFieldsContext'; // Importa il nuovo contesto
 import RefertoGpt from './components/chat/refertogpt';
+import RefertoGptNetfily from './components/chat/RefertoGptNetlify';
 
 const MainContent = () => {
     const { drawerVisible } = useContext(FocusContext);
@@ -35,7 +36,9 @@ const MainContent = () => {
         </BarraLatSin>
         <div className="flex-grow flex flex-col space-y-4" style={{flexGrow: 1}}>
             <TemplateContainer />
-            <RefertoGpt /> 
+          <RefertoGpt /> 
+           <RefertoGptNetfily /> 
+
         </div>
 
       </div>
