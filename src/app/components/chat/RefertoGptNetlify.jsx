@@ -23,6 +23,7 @@ const RefertoGptNetfily = () => {
   const apiURL = process.env.NODE_ENV === 'production' 
     ? '/.netlify/functions/chatWithOpenAI' 
     : '/api/chatWithOpenAI';
+console.log("Current API URL: ", apiURL);
 
   const sendToOpenAI = async (message) => {
     setLoading(true);
