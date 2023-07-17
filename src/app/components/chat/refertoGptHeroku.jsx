@@ -20,7 +20,7 @@ const RefertoGptHeroku = () => {
   const [usage, setUsage] = useState({}); // Initialize usage as null
 
   // Define the API URL as the Heroku app URL
-  const apiURL = 'https://rad101next.herokuapp.com/chatWithOpenAI';
+  const apiURL = 'https://rad101next-36200d4dfbbe.herokuapp.com/chatWithOpenAI';
 
 
   const sendToOpenAI = async (message) => {
