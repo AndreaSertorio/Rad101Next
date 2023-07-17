@@ -5,7 +5,7 @@ const app = express();
 
 app.options('*', cors());  // enable pre-flight
 app.use(cors({
-  origin: ['https://radiology101.it', 'https://www.radiology101.it', 'http://localhost:3000'],
+  origin: ['https://radiology101.it', 'https://www.radiology101.it', 'http://localhost:3001'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
