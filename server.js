@@ -1,7 +1,9 @@
 const express = require('express');
 const axios = require('axios');
+const cors = require('cors');  // Aggiungi questa linea
 const app = express();
 
+app.use(cors());  // E questa linea
 app.use(express.json());
 
 app.post('/chatWithOpenAI', async (req, res) => {
