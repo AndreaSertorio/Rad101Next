@@ -62,8 +62,8 @@ const RefertoGptHeroku = () => {
             <Select defaultValue={model} style={{ width: 180 }} onChange={setModel}>
               <Option value="gpt-4">gpt-4</Option>
               <Option value="gpt-4-0613">gpt-4-0613</Option>
-              <Option value="gpt-4-32k">gpt-4-32k</Option>
-              <Option value="gpt-4-32k-0613">gpt-4-32k-0613</Option>
+              {/* <Option value="gpt-4-32k">gpt-4-32k</Option>
+              <Option value="gpt-4-32k-0613">gpt-4-32k-0613</Option> */}
               <Option value="gpt-3.5-turbo">gpt-3.5-turbo</Option>
               <Option value="gpt-3.5-turbo-0613">gpt-3.5-turbo-0613</Option>
               <Option value="gpt-3.5-turbo-16k">gpt-3.5-turbo-16k</Option>
