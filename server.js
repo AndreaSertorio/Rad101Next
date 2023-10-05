@@ -3,6 +3,9 @@ const axios = require('axios');
 const cors = require('cors');  
 const app = express();
 
+// Importa la funzione handler da server_chatPDF.js
+const { handler } = require('./server_chatPDF');
+
 app.options('*', cors());  
 app.use(cors({
   origin: ['https://radiology101.it', 'https://www.radiology101.it', 'http://localhost:3001'],
@@ -13,6 +16,8 @@ app.use(cors({
 app.use(express.json());
 
 app.post('/chatWithOpenAI', async (req, res) => {
+    console.log('Request Headers:', req.headers);
+    console.log('Request Body:', req.body);
     const { model, temperature, messages } = req.body;
 
     try {
@@ -33,6 +38,9 @@ app.post('/chatWithOpenAI', async (req, res) => {
         res.status(500).json({ error: error.toString() });
     }
 });
+
+// Aggiungi la nuova rotta per gestire le richieste a Pinecone
+app.post('/chatWithPinecone', handler);
 
 // Aggiungi questa rotta di test
 app.get('/test', (req, res) => {
